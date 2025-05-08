@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: svelte-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: svelte-frontend
+  template:
+    metadata:
+      labels:
+        app: svelte-frontend
+    spec:
+      containers:
+        - name: svelte-container
+          image: 734793106345.dkr.ecr.ap-northeast-2.amazonaws.com/svel-front:1
+          ports:
+            - containerPort: 5173
+          command: ["npm", "run", "dev", "--", "--host=0.0.0.0"]
